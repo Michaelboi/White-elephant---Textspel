@@ -30,7 +30,10 @@ def look():
 
 # förflytar spelaren
 def north():
-    if current_room == 2
+    global current_room
+    if current_room == 2:
+        current_room += 1
+        print(ws[f'C{current_room}'].value)
 
 
 def south():
@@ -47,7 +50,7 @@ def west():
 
 # En loop som håller kvar spelaren i input
 def textspel():
-    while current_pos != ws['B8'].value:
+    while current_room != ws['B8'].value:
         player_input = str(input(''))
         if 'look' in player_input:
             look()
