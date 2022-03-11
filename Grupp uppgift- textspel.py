@@ -20,28 +20,40 @@ room5 = ws['C6'].value
 room6 = ws['C7'].value
 Exit = ws['B10'].value
 current_pos = [room1, room2, room3, room4, room5, room6]
-directions = ['north', 'south', 'east', 'west']
 current_room = 2
+current_room_change = 1
+#current_position = ['C', 'D', 'E', 'F']
+current_position_change = 1
+start = True
+
 
 # kollar nuvarande postion
 def look():
-    print(ws[f"C{current_room}"].value)
+    print(ws[f"{current_position}{current_room}"].value)
 
 
 # förflytar spelaren
 def north():
     global current_room
-    if current_room == 2:
-        current_room += 1
-        print(ws[f'C{current_room}'].value)
+    if current_room >= 2:
+        current_room += current_room_change
+        print(ws[f'{current_position}{current_room}'].value)
 
 
 def south():
-    print()
+    global current_room
+    if current_room >= 2:
+        current_room -= current_room_change
+        print(ws[f'{current_position}{current_room}'].value)
 
 
 def east():
-    print()
+    global current_position
+    #if current_position >= ['1']:
+        #current_position += current_position_change
+        #print(ws[f'{current_position}{current_room}'].value)
+
+
 
 
 def west():
@@ -49,20 +61,24 @@ def west():
 
 
 # En loop som håller kvar spelaren i input
-def textspel():
-    while current_room != ws['B8'].value:
-        player_input = str(input(''))
-        if 'look' in player_input:
-            look()
-        if 'north' in player_input:
-            north()
-        if 'south' in player_input:
-            south()
-        if 'west' in player_input:
-            west()
-        if 'east' in player_input:
-            east()
-textspel()
+
+
+while start == True:
+    player_input = str(input(''))
+    if player_input == 'stop':
+        start = False
+    if 'look' in player_input:
+        look()
+    if 'north' in player_input:
+        north()
+    if 'south' in player_input:
+        south()
+    if 'west' in player_input:
+        west()
+    if 'east' in player_input:
+        east()
+
+
 # for row in range(2, 5):
 # for col in range(1, 5):
 # char = get_column_letter(col)
